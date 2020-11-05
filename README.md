@@ -3,25 +3,28 @@
 **Installation guide:**
 
 >***Windows:***
-* Create temporary directory for build files:
+1. Create temporary directory for build files:
 
     `mkdir build`
-* Configure project setting platform and build type:
+2. Configure project setting platform and build type:
+	2.1. With OpenCV already builded:
 
-    `cmake -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_BUILD_TYPE=Release -Bbuild`
-* Build detector setting configuration type:
+		`cmake -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR=<builded opencv path> -Bbuild`
+	2.2 Without OpenCV builded:
+		
+		`cmake -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_BUILD_TYPE=Release -Bbuild`
+3. Build detector setting configuration type:
+	
+	`cmake --build build --config Release`
+4. Install OpenCV (if not installed):
+	
+	`cmake --build build/source/opencv-4.5.0 --target install --config Release`
+5. Install detector:
 
-    `cmake --build build --config Release`
-* Install OpenCV:
+	`cmake --build build --target install --config Release`
+6. Remove temporary directory:
 
-    `cmake --build build/source/opencv-4.5.0 --target install --config Release`
-* Install detector:
+	`rmdir /s/q build`
+7. Run detector with root directory parameter:
 
-    `cmake --build build --target install --config Release`
-* Remove temporary directory:
-
-    `rmdir /s/q build`
-
-* Run detector with root directory parameter:
-
-    `detector/detector.exe -d <dir_path>`
+	`detector.exe -d <dir_path>`
