@@ -8,11 +8,11 @@
 
 **2.** Configure project:
 
-       -2.1. With OpenCV already builded:
+       - With OpenCV already builded:
 
                cmake -DCMAKE_GENERATOR_PLATFORM=<platform type: x64, x86> -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR=<path to builded OpenCV> -Bbuild
 
-       -2.2. Without OpenCV builded:
+       - Without OpenCV builded:
 		
 	       cmake -DCMAKE_GENERATOR_PLATFORM=<platform type: x64, x86> -DCMAKE_BUILD_TYPE=Release -Bbuild
 
