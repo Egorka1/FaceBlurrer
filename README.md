@@ -2,7 +2,9 @@
 
 >***Installation guide for Windows:***
 * Create temporary directory for build files:\
-	`mkdir build`
+	```
+	mkdir build
+	```
 * Configure project:
 	* With OpenCV already builded:\
 		`cmake -DCMAKE_GENERATOR_PLATFORM=<platform type: x64, x86> -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR=<path to builded OpenCV> -Bbuild`
