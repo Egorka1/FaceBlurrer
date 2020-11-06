@@ -1,12 +1,10 @@
 # FaceBlurrer
 
 >***Pre requirements:***
-```
-* CMake  >= 3.14
-* OpenCV >= 3.0 (optional)
-* Boost  >= 1.63 (optional)
-* Any C++ compiler
-```
+1. CMake >= 3.14
+2. OpenCV >= 3.0 (optional)
+3. Boost >= 1.63 (optional)
+4. Any C++ compiler
 
 If OpenCV or/and Boost not builded then the build from sources will start automatically.\
 Supported only Release configuration.
