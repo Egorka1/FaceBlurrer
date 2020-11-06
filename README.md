@@ -1,19 +1,28 @@
 # FaceBlurrer
 
+>***Pre requirements:***
+* CMake  >= 3.14
+* OpenCV >= 3.0 (optional)
+* Boost  >= 1.63 (optional)
+* Any C++ compiler
+
+If OpenCV or/and Boost not builded then the build from sources will start automatically.
+Supported only Release configuration.
+
 >***Installation guide:***
 * Create temporary directory for build files:
 	```
 	mkdir build
 	```
-* Configure project (`OpenCV_DIR` is optional. If empty then the build from sources will start automatically):
+* Configure project (OpenCV_DIR is optional):
 	```
-	cmake -DCMAKE_GENERATOR_PLATFORM=<platform type: x64, x86> -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR=<path to builded OpenCV> -Bbuild
+	cmake -DCMAKE_GENERATOR_PLATFORM=<platform type> -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR=<path to builded OpenCV> -Bbuild
 	```
 * Build and install detector:
 	```
 	cmake --build build --config Release
 	```
-* Remove temporary directory:
+* Remove temporary directory (optional):
 	```
 	rmdir /s/q build
 	```
