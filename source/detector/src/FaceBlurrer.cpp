@@ -1,61 +1,34 @@
 ﻿#include "FaceDetectorDLL.h"
 #include "JsonWriter.h"
+#include "Utils.h"
 
-#include <boost/filesystem.hpp>
-#include <boost/regex.hpp>
-#include <boost/program_options.hpp>
-
-
-static bool IsImage(const boost::filesystem::directory_entry& file_path) {
-	const static boost::regex exp("\.(jpe?g|png|webp|bmp)$");
-
-	boost::smatch match;
-	return boost::regex_search(file_path.path().filename().string(), match, exp);
-}
-
-static std::string GetOutputImagePath(const boost::filesystem::path& path) {
-	const std::string dir_name = path.string().substr(0, path.string().find_last_of("/\\") + 1), image_name = path.stem().string();
-	return dir_name + image_name + "_out.jpg";
-}
 
 int main(int argc, char** argv) {
-	std::string base_dir;
-	try {
-		boost::program_options::options_description desc("Allowed options:");
-		desc.add_options()
-			("help", "Help with using")
-			("d", boost::program_options::value<std::string>(), "Path to directory with images");
-
-		boost::program_options::variables_map vm;
-		boost::program_options::store(boost::program_options::parse_command_line(argc, argv, desc), vm);
-		boost::program_options::notify(vm);
-
-		if (vm.count("help")) {
-			std::cout << desc << '\n';
-			return EXIT_FAILURE;
-		}
-
-		base_dir = vm["d"].as<std::string>();
-	}
-	catch (const boost::program_options::error& error) {
-		std::cerr << error.what() << '\n';
-		system("pause");
-		return EXIT_FAILURE;
-	}
-
+	std::string base_dir = Utils::ParseCommandLine(argc, argv);
 	if (!boost::filesystem::is_directory(base_dir)) {
 		std::cerr << "Directory " << base_dir << " doesn't exist!\n";
-		system("pause");
+		#if _WIN32
+			system("pause");
+		#endif
 		return EXIT_FAILURE;
 	}
 
+	std::string result_filename;
+	#if _WIN32
+		result_filename = "\\result.json";
+	#else
+		result_filename = "\result.json";
+	#endif
+
 	const FaceDetectorDLL detector("detector_lib");
-	JsonWriter writer(base_dir + "//result.json");
+	JsonWriter writer(base_dir + result_filename);
+
+	std::cout << base_dir + result_filename << '\n';
 
 	for (const boost::filesystem::directory_entry& file : boost::filesystem::recursive_directory_iterator(base_dir)) {
-		if (IsImage(file)) {
+		if (Utils::IsImage(file)) {
 			const std::string image_path = file.path().string();
-			const std::string output_path = GetOutputImagePath(file.path());
+			const std::string output_path = Utils::GetOutputImagePath(file.path());
 
 			cv::Mat image = cv::imread(image_path);
 
@@ -72,6 +45,8 @@ int main(int argc, char** argv) {
 		}
 	}
 	
-	system("pause");
-	return 0;
+	#if _WIN32
+		system("pause");
+	#endif
+	return EXIT_SUCCESS;
 }

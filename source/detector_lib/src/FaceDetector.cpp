@@ -1,7 +1,7 @@
 #include "FaceDetector.h"
 
 
-bool InitializeFaceDetector() {
+bool InitializeFaceDetector() noexcept {
 	return FaceDetector.load("FaceCascade.xml");
 }
 

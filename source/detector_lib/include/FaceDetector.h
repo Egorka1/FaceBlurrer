@@ -16,6 +16,6 @@
 cv::CascadeClassifier FaceDetector;
 
 extern "C" {
-	FACE_DETECTOR_API bool InitializeFaceDetector();
-	FACE_DETECTOR_API std::vector<cv::Rect> DetectFaces(const cv::Mat&, const std::string&);
+	FACE_DETECTOR_API bool InitializeFaceDetector() noexcept;
+	FACE_DETECTOR_API std::vector<cv::Rect> DetectFaces(const cv::Mat&, const std::string&) noexcept;
 }

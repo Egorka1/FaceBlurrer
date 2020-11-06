@@ -5,7 +5,8 @@ add_executable(detector
 	src/JsonWriter.cpp
 )
 
-target_link_libraries(detector ${OpenCV_LIBS})
+target_link_libraries(detector ${CMAKE_DL_LIBS})
+target_link_libraries(detector opencv_world)
 target_link_libraries(detector Boost::boost)
 target_link_libraries(detector Boost::filesystem)
 target_link_libraries(detector Boost::regex)
@@ -15,8 +16,17 @@ set_target_properties(detector PROPERTIES RUNTIME_OUTPUT_DIRECTORY 	    ${DETECT
 set_target_properties(detector PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG    ${DETECTOR_BINARY_DIR})
 set_target_properties(detector PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE  ${DETECTOR_BINARY_DIR})
 
+if(NOT OpenCV_FOUND)
+	add_custom_command(
+    		TARGET detector PRE_BUILD
+    		COMMAND cmake --install ${CMAKE_BINARY_DIR}/source/opencv-4.5.0/ --config Release
+    		COMMENT "Installing OpenCV-4.5.0..."
+	)
+endif()
+
 add_custom_command(
-    TARGET detector POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy ${OPENCV_WORLD_INSTALL_PATH} ${DETECTOR_BINARY_DIR}
-    COMMENT "Copying ${OPENCV_WORLD_INSTALL_PATH} to detector directory"
+	TARGET detector POST_BUILD
+	COMMAND cmake --install ${CMAKE_BINARY_DIR}/source/detector/ --config Release
+	COMMAND ${CMAKE_COMMAND} -E copy ${OPENCV_WORLD_INSTALL_PATH} ${DETECTOR_BINARY_DIR}
+	COMMENT "Copying ${OPENCV_WORLD_INSTALL_PATH} to detector directory"
 )
