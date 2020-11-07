@@ -35,7 +35,7 @@ bool FaceDetectorDLL::LoadLib(const char* dll_name, int mode) noexcept {
 		std::string dll_path = std::string(dll_name) + ".dll";
 		m_hInstance = (void*)LoadLibrary(dll_path.c_str());
 	#else
-		std::string dll_path = "lib" + std::string(dll_name) + ".so";
+		std::string dll_path = "./lib" + std::string(dll_name) + ".so";
 		m_hInstance = dlopen(dll_path.c_str(), mode);
 	#endif
 

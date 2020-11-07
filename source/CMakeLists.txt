@@ -1,3 +1,8 @@
+add_custom_target(OpenCV_install
+	COMMAND cmake --build ${CMAKE_BINARY_DIR}/source/opencv-4.5.0/ --config Release
+    	COMMAND cmake --install ${CMAKE_BINARY_DIR}/source/opencv-4.5.0/ --config Release
+)
+
 find_package(OpenCV)
 if(NOT OpenCV_FOUND)
 	message(STATUS "OpenCV wasn't found. Installation of OpenCV-4.5.0 started...")

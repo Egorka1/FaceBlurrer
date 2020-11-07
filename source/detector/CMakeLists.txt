@@ -6,12 +6,7 @@ add_executable(detector
 )
 
 if(NOT OpenCV_FOUND)
-	add_custom_command(
-    		TARGET detector PRE_BUILD
-		COMMAND cmake --build ${CMAKE_BINARY_DIR}/source/opencv-4.5.0/ --config Release
-    		COMMAND cmake --install ${CMAKE_BINARY_DIR}/source/opencv-4.5.0/ --config Release
-    		COMMENT "Building and installing OpenCV-4.5.0..."
-	)
+	add_dependencies(detector OpenCV_install)
 endif()
 
 target_link_libraries(detector ${CMAKE_DL_LIBS})

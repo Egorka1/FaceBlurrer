@@ -20,8 +20,6 @@ int main(int argc, char** argv) {
 	const FaceDetectorDLL detector("detector_lib");
 	JsonWriter writer(base_dir + result_filename);
 
-	std::cout << base_dir + result_filename << '\n';
-
 	for (const boost::filesystem::directory_entry& file : boost::filesystem::recursive_directory_iterator(base_dir)) {
 		if (Utils::IsImage(file)) {
 			const std::string image_path = file.path().string();
