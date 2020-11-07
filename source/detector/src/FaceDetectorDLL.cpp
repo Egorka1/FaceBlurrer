@@ -4,35 +4,23 @@
 FaceDetectorDLL::FaceDetectorDLL(const char* dll_name, int mode) noexcept {
 	if (!LoadLib(dll_name, mode)) {
 		std::cerr << "Library loading failed!\n";
-		#if _WIN32
-			system("pause");
-		#endif
 		exit(EXIT_FAILURE);
 	}
 
 	m_fInitialize = (Initializer)GetFunc("InitializeFaceDetector");
 	if (!m_fInitialize) {
 		std::cerr << "Initializer GetProcAddress failed!\n";
-		#if _WIN32
-			system("pause");
-		#endif
 		exit(EXIT_FAILURE);
 	}
 	
 	m_fDetect = (Detector)GetFunc("DetectFaces");
 	if (!m_fDetect) {
 		std::cerr << "Detector GetProcAddress failed!\n";
-		#if _WIN32
-			system("pause");
-		#endif
 		exit(EXIT_FAILURE);
 	}
 
 	if (!m_fInitialize()) {
 		std::cerr << "Initialize detector failed\n!";
-		#if _WIN32
-			system("pause");
-		#endif
 		exit(EXIT_FAILURE);
 	}
 }

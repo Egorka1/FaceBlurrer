@@ -38,9 +38,6 @@ namespace Utils {
 		}
 		catch (const boost::program_options::error& error) {
 			std::cerr << error.what() << '\n';
-			#if _WIN32
-				system("pause");
-			#endif
 			exit(EXIT_FAILURE);
 		}
 

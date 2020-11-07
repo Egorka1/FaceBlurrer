@@ -7,9 +7,6 @@ int main(int argc, char** argv) {
 	std::string base_dir = Utils::ParseCommandLine(argc, argv);
 	if (!boost::filesystem::is_directory(base_dir)) {
 		std::cerr << "Directory " << base_dir << " doesn't exist!\n";
-		#if _WIN32
-			system("pause");
-		#endif
 		return EXIT_FAILURE;
 	}
 
@@ -45,8 +42,5 @@ int main(int argc, char** argv) {
 		}
 	}
 	
-	#if _WIN32
-		system("pause");
-	#endif
 	return EXIT_SUCCESS;
 }

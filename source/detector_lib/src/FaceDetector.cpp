@@ -17,7 +17,7 @@ std::vector<cv::Rect> DetectFaces(const cv::Mat& image, const std::string& image
 	std::vector<cv::Rect> faces;
 	FaceDetector.detectMultiScale(preprocessed, faces, 1.1, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
-	printf("[DONE]: %s - %d face(s)\n", image_path.c_str(), faces.size());
+	printf("[DONE]: %s - %d face(s)\n", image_path.c_str(), (int) faces.size());
 
 	return faces;
 }
