@@ -4,10 +4,10 @@
 1. CMake >= 3.14
 2. OpenCV (optional)
 3. Boost (optional)
-4. GTest (optional)
+4. GTest
 4. Any C++ compiler
 
-If OpenCV or/and Boost or/and GTest not builded then the build from sources will start automatically.\
+If OpenCV or/and Boost not builded then the build from sources will start automatically.\
 Supported only Release configuration.
 
 
