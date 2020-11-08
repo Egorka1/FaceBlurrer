@@ -44,3 +44,8 @@ endif()
 set(DETECTOR_BINARY_DIR 			${CMAKE_BINARY_DIR}/../detector/)
 add_subdirectory(detector_lib)
 add_subdirectory(detector)
+
+add_subdirectory(gtest-1.10.0)
+include_directories(gtest-1.10.0/googletest/include/)
+
+add_subdirectory(tests)
