@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
 	#if _WIN32
 		result_filename = "\\result.json";
 	#else
-		result_filename = "\result.json";
+		result_filename = "/result.json";
 	#endif
 
 	const FaceDetectorDLL detector("detector_lib");

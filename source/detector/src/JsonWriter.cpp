@@ -5,7 +5,7 @@ JsonWriter::JsonWriter(const std::string& dir_path) noexcept : m_sSaveDir(dir_pa
 
 JsonWriter::~JsonWriter() {
 	m_nRoot.add_child("Images", m_nImages);
-	boost::property_tree::write_json(m_sSaveDir.c_str(), m_nRoot);
+	boost::property_tree::write_json(m_sSaveDir, m_nRoot);
 }
 
 void JsonWriter::AddImageResults(const std::string& input_path, const std::string& output_path, const std::vector<cv::Rect>& faces) noexcept {
