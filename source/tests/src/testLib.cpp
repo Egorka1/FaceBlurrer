@@ -18,7 +18,7 @@ TEST(DetectorLibTest, FacesCountImage2) {
 }
 
 TEST(DetectorLibTest, FacesCountImage3) {
-	EXPECT_EQ(FoundFacesCount("./TestDirectory/f1/2.jpg"), 2);
+	EXPECT_EQ(FoundFacesCount("./TestDirectory/f1/f11/2.jpg"), 2);
 }
 
 TEST(DetectorLibTest, FacesCountImage4) {

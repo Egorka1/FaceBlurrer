@@ -33,10 +33,9 @@ endif()
 
 include_directories(include/)
 include_directories(../detector/include/)
-add_executable(tests src/main.cpp src/testLib.cpp ../detector/src/FaceDetectorDLL.cpp)
+add_executable(tests src/main.cpp src/TestLib.cpp ../detector/src/FaceDetectorDLL.cpp)
 
-add_dependencies(tests detector_lib)
-
+target_link_libraries(tests ${CMAKE_DL_LIBS})
 target_link_libraries(tests gtest)
 target_link_libraries(tests opencv_world)
 
