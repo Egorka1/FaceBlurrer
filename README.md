@@ -4,7 +4,6 @@
 1. CMake >= 3.14
 2. OpenCV with opencv_world lib (optional)
 3. Boost with filesystem, regex and program_options libs (optional)
-4. GTest
 4. Any C++ compiler
 
 If OpenCV or/and Boost not builded then the build from sources will start automatically.\
