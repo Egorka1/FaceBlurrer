@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 			}
 
 			cv::resize(image, image, cv::Size(), .5, .5, cv::INTER_CUBIC);
-			//cv::imwrite(output_path, image);
+			cv::imwrite(output_path, image);
 
 			writer.AddImageResults(image_path, output_path, faces);
 		}
